@@ -41,7 +41,7 @@ async def get(username: str, db: Session = Depends(get_db), current_user: Option
         )
         if not creator_profile:
             raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail=CREATOR_PROFILE_NOT_FOUND_ERROR)
-        tips = db.query(Tip).filter_by(creator_profile_id=creator_profile.id).order_by(Tip.created_at.desc()).limit(6).all()
+        tips = db.query(Tip).filter_by(creator_profile_id=creator_profile.id).order_by(Tip.created_at.desc()).limit(8).all()
         profile_picture_url=None
         if creator_profile.profile_picture_key:
             profile_picture_url=build_s3_url(creator_profile.profile_picture_key)

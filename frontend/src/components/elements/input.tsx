@@ -113,7 +113,7 @@ export function ProfilePictureInput({
     <>
       <label
           htmlFor="profilePicture"
-          className={`w-24 md:h-24 md:w-32 md:h-32 rounded-xl overflow-hidden bg-base-200 border ${error ? "border-error" : "border-gray-300"} flex items-center justify-center 
+          className={`w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden bg-base-200 border ${error ? "border-error" : "border-gray-300"} flex items-center justify-center 
             cursor-pointer hover:opacity-80 transition`}
         >
           {profilePicture ? (

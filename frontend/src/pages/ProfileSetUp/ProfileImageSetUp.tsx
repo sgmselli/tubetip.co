@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar';
 import Steps from '../../components/Steps';
 import { ProfileBannerInput, ProfilePictureInput } from '../../components/elements/input';
 import MotionDiv from '../../components/divAnimation';
+import { handleHeicFileUpload } from '../../utils/upload';
 
 const ProfilePictureSetUp: React.FC = () => {
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
@@ -39,6 +40,14 @@ const ProfilePictureSetUp: React.FC = () => {
     }
   }
 
+  const handleProfilePictureUpload = async (file: File | null) => {
+    setProfilePicture(await handleHeicFileUpload(file));
+  }
+
+  const handleProfileBannerUpload = async (file: File | null) => {
+    setProfileBanner(await handleHeicFileUpload(file));
+  }
+
   return (
     <div className="flex flex-col min-h-screen w-full">
 
@@ -61,7 +70,7 @@ const ProfilePictureSetUp: React.FC = () => {
           <div className="flex flex-col items-center justify-center form-control mb-8">
             <ProfilePictureInput
               profilePicture={profilePicture}
-              setProfilePicture={setProfilePicture}
+              setProfilePicture={handleProfilePictureUpload}
               error={errors.profile_picture}
             />
           </div>
@@ -69,7 +78,7 @@ const ProfilePictureSetUp: React.FC = () => {
           <div className="flex flex-col justify-center form-control mb-8">
             <ProfileBannerInput
               profileBanner={profileBanner}
-              setProfileBanner={setProfileBanner}
+              setProfileBanner={handleProfileBannerUpload}
               error={errors.profile_banner}
             />
           </div>

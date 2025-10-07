@@ -1,5 +1,5 @@
 from typing import Optional
-
+from urllib.parse import quote
 import stripe
 from dataclasses import dataclass
 
@@ -113,7 +113,7 @@ def create_stripe_checkout_session_link(creator_profile_id: int, username: str, 
     success_url = f"{settings.frontend_url}/{username}?result=success&amount={payment_amount}"
     cancel_url = f"{settings.frontend_url}/{username}?result=cancel&amount={payment_amount}"
     if message:
-        cancel_url += f"?message={message}"
+        cancel_url += f"&message={quote(message)}"
 
     session = stripe.checkout.Session.create(
         payment_method_types=["card"],
