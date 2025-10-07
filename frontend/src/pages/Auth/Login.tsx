@@ -39,7 +39,7 @@ const Login: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen w-full">
       <AuthNavbar
-        route="register"
+        route="login"
       />
       <MotionDiv className="flex flex-1 items-center justify-center pb-40">
         <form

@@ -4,6 +4,7 @@ import { updateCreatorProfile } from "../../../api/profile";
 import Input, { ProfileBannerInput, ProfilePictureInput } from "../../../components/elements/input";
 import Label from "../../../components/elements/label";
 import Textarea from "../../../components/elements/textarea";
+import { handleHeicFileUpload } from "../../../utils/upload";
 
 interface EditProfileModalProps {
   isOpen: boolean;
@@ -90,6 +91,14 @@ export default function EditProfileModal({
     }
   };
 
+  const handleProfilePictureUpload = async (file: File | null) => {
+    setProfilePicture(await handleHeicFileUpload(file));
+  }
+
+  const handleProfileBannerUpload = async (file: File | null) => {
+    setProfileBanner(await handleHeicFileUpload(file));
+  }
+
   return (
     <dialog ref={modalRef} className="modal">
       <div className="modal-box max-w-4xl max-h-[90vh] py-12 px-8 md:p-12">
@@ -107,7 +116,7 @@ export default function EditProfileModal({
             <ProfilePictureInput
               profilePicture={profilePicture}
               initialProfilePicture={initialProfilePicture}
-              setProfilePicture={setProfilePicture}
+              setProfilePicture={handleProfilePictureUpload}
               error={errors.profile_picture}
             />
           </div>
@@ -117,7 +126,7 @@ export default function EditProfileModal({
             <ProfileBannerInput
               profileBanner={profileBanner}
               initialProfileBanner={initialProfileBanner}
-              setProfileBanner={setProfileBanner}
+              setProfileBanner={handleProfileBannerUpload}
               error={errors.profile_banner}
             />
           </div>

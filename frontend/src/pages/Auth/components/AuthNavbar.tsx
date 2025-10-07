@@ -12,9 +12,9 @@ const AuthNavbar: React.FC<AuthNavbarProps> = ({route}: AuthNavbarProps) => {
 
     const navigateLink = () => {
         if (route == "register") {
-            navigate("/register")
-        } if (route == "login") {
             navigate("/login")
+        } if (route == "login") {
+            navigate("/register")
         }
     }
 
